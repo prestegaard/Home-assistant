@@ -1,0 +1,211 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 0
+  longitude: 0
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Oslo
+  # Customization file
+  #customize: !include customize.yaml
+  
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+#group: !include groups.yaml
+#automation: !include automations.yaml
+
+### Automation ###
+automation: !include_dir_merge_list automation
+
+
+###  Sensors  ###
+#  Sensors are anything (hardware or software) that has a state.
+sensor: !include_dir_merge_list sensors
+
+### Input Boolean ###
+# The input_boolean component allows the user to define boolean values that can be controlled via the frontend and can be used within conditions of automation.
+input_boolean: !include input_boolean.yaml
+
+### Input Number ###
+input_number: !include input_number.yaml
+
+  
+http:
+  api_password: !secret http_password
+  #ssl_certificate: /home/homeassistant/dehydrated/certs/prestegaard.duckdns.org/fullchain.pem
+  #ssl_key: /home/homeassistant/dehydrated/certs/prestegaard.duckdns.org/privkey.pem
+  base_url: prestegaard.duckdns.org:8123
+  ip_ban_enabled: True
+  login_attempts_threshold : 3
+
+api:
+
+mqtt:
+  broker: 127.0.0.1 
+  port: 1883
+  client_id: home-assistant-1
+  keepalive: 60
+  username: haagon
+  password: Sabeltann2
+  protocol: 3.1 
+
+######################################## MQTT AC OUTLETS###########################################
+
+switch 1:
+  - platform: mqtt
+    name: "AC 1"
+    state_topic: "/AC/outletConfirm1/"
+    command_topic: "/AC/outlet1/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true    
+  
+switch 2:
+  - platform: mqtt
+    name: "AC 2"
+    state_topic: "/AC/outletConfirm2/"
+    command_topic: "/AC/outlet2/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true    
+
+switch 3:
+  - platform: mqtt
+    name: "AC 3"
+    state_topic: "/AC/outletConfirm3/"
+    command_topic: "/AC/outlet3/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true    
+  
+switch 4:
+  - platform: mqtt
+    name: "AC 4"
+    state_topic: "/AC/outletConfirm4/"
+    command_topic: "/AC/outlet4/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true
+
+switch 5:
+  - platform: mqtt
+    name: "AC 5"
+    state_topic: "/AC/outletConfirm5/"
+    command_topic: "/AC/outlet5/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true    
+
+switch 6:
+  - platform: mqtt
+    name: "AC 6"
+    state_topic: "/AC/outletConfirm6/"
+    command_topic: "/AC/outlet6/"
+    payload_on: "1"
+    payload_off: "0"
+    qos: 0
+    retain: true    
+
+switch 7:
+- platform: mqtt
+  name: "AC 7"
+  state_topic: "/AC/outletConfirm7/"
+  command_topic: "/AC/outlet7/"
+  payload_on: "1"
+  payload_off: "0"
+  qos: 0
+  retain: true   
+
+switch 8:
+- platform: mqtt
+  name: "AC 8"
+  state_topic: "/AC/outletConfirm8/"
+  command_topic: "/AC/outlet8/"
+  payload_on: "1"
+  payload_off: "0"
+  qos: 0
+  retain: true    
+
+
+group:
+  default_view:
+    name: Overview
+    view: yes
+    entities:
+      - group.alarmclock
+      - group.switch
+  alarmclock:
+    name: Wake Me Up
+    entities: 
+      - automation.wake_me_up
+      - sensor.alarm_time
+      - input_number.alarmhour
+      - input_number.alarmminutes
+      - input_boolean.alarmweekday
+  switch:
+    name: Lights Bedroom
+    entities:
+     - switch.ac_1
+     - switch.ac_2
+     - switch.ac_3
+     - switch.ac_4
+     - switch.ac_5
+     - switch.ac_6
+     - switch.ac_7
+     - switch.ac_8
