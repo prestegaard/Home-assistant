@@ -1,0 +1,98 @@
+title: Ringvegen automasjon
+
+# Optional background (overwrites the global background).
+background: radial-gradient(crimson, skyblue)
+# Each view can have a different theme applied. Theme should be defined in the frontend.
+theme: dark-mode
+# The cards to show on this view.
+
+views:
+   # Specify a tab icon if you want the view tab to be an icon.
+  #- icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+  - title: Bedroom
+    cards:
+        # Entities card will take a list of entities and show their state.
+      - id: bedroom_lights
+        type: entities
+        # Title of the entities card
+        title: Lights
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - entity: light.bedroom
+            # Override the name to use
+            name: Hue lights
+          - entity: light.ac_1
+            name: Book light
+          - entity: switch.ac_2
+            name: Nights stand light
+          - entity: switch.ac_3
+            name: Red leds
+          - entity: switch.ac_4
+            name: IKEA lamp
+
+      - id: bedroom_google_home
+        type: media-control
+        entity: media_player.googlehome4907
+        name: Google Home
+
+      - id: bedroom_chromecast
+        type: media-control
+        entity: media_player.hp
+        name: HP Chromecast
+
+
+      - id: ac_outlets
+        type: entities
+        title: AC outlets
+        entities:
+          - switch.ac_5
+          - switch.ac_6
+          - switch.ac_7
+          - switch.ac_8
+    # View tab title.
+  - title: Living room
+    # Unique id for direct access /lovelace/${id}. If you don't specify one, it is added automatically.
+    id: living_room
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - id: stue_chromecast
+        type: media-control
+        entity: media_player.stue
+        name: Stue Chromecast
+
+      - id: nad_remote
+        type: entities
+        title: NAD
+        entities:
+          - entity: switch.nad_power
+            name: Power
+            group: true
+          - entity: cover.nad_volume
+            name: Voume
+            group: true
+
+      # The filter card will filter entities for their state
+      # Every card needs an ID, if you don't specify one, it is added automatically. 
+      - id: living_room_light 
+       # The picture entity card will represent an entity with a picture
+        type: picture-entity
+        image: https://www.home-assistant.io/images/default-social.png
+        entity: light.living_room
+
+      - id: bedroom_google_home
+        type: media-control
+        entity: media_player.googlehome1726
+        name: Google Home
+
+
+      - id: test_media_player
+        name: Test Media Player
+        type: entities
+        entities: 
+          - media_player.test_universal

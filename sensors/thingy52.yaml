@@ -1,0 +1,17 @@
+ # First thingy
+- platform: thingy52
+ # Add your custom name here
+  friendly_name: Soverom
+  scan_interval: 60
+ # 1 = 1 s interval
+ # 2 = 10 s interval
+ # 3 = 60 s interval
+  gas_interval: 3
+  mac: "DA:96:FB:EC:11:11"
+  sensors:
+    - 'temperature'
+    - 'humidity'
+    - 'co2'
+    - 'tvoc'
+    - 'pressure'
+    - 'battery'
