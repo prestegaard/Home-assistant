@@ -1,0 +1,372 @@
+{
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.all_automations"
+                                }
+                            ],
+                            "title": "Automations",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.kjeller_temperature"
+                                },
+                                {
+                                    "entity": "sensor.soverom_temperature"
+                                },
+                                {
+                                    "entity": "sensor.stue_temperature"
+                                },
+                                {
+                                    "entity": "sensor.loft_temperature"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Temperatur",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.kjeller_humidity"
+                                },
+                                {
+                                    "entity": "sensor.soverom_humidity"
+                                },
+                                {
+                                    "entity": "sensor.stue_humidity"
+                                },
+                                {
+                                    "entity": "sensor.loft_humidity"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Fuktighet",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.soverom_klima"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.hue"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "sensor.living_room_temperature",
+                            "type": "sensor"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.living_room_motion_sensor"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "default_view",
+                    "title": "Overview"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entity": "switch.nad_power",
+                            "hold_action": {
+                                "action": "call-service",
+                                "service": "switch.turn_off",
+                                "service_data": {
+                                    "entity_id": "switch.nad_power"
+                                }
+                            },
+                            "icon": "mdi:power",
+                            "name": "Nad",
+                            "tap_action": {
+                                "action": "call-service",
+                                "service": "switch.turn_on",
+                                "service_data": {
+                                    "entity_id": "switch.nad_power"
+                                }
+                            },
+                            "type": "entity-button"
+                        },
+                        {
+                            "card": {
+                                "entities": [
+                                    {
+                                        "action_name": "Volume up",
+                                        "icon": "mdi:volume-plus",
+                                        "name": "Volume up",
+                                        "service": "switch.turn_on",
+                                        "service_data": {
+                                            "entity_id": "switch.nad_volume"
+                                        },
+                                        "type": "call-service"
+                                    },
+                                    {
+                                        "action_name": "Volume down",
+                                        "icon": "mdi:volume-minus",
+                                        "name": "Volume down",
+                                        "service": "switch.turn_off",
+                                        "service_data": {
+                                            "entity_id": "switch.nad_volume"
+                                        },
+                                        "type": "call-service"
+                                    },
+                                    {
+                                        "action_name": "Chromecast",
+                                        "icon": "mdi:cast",
+                                        "name": "Input Chromecast",
+                                        "service": "switch.turn_on",
+                                        "service_data": {
+                                            "entity_id": "switch.nad_chromecast"
+                                        },
+                                        "type": "call-service"
+                                    },
+                                    {
+                                        "action_name": "Cable",
+                                        "icon": "mdi:music",
+                                        "name": "Input Cable",
+                                        "service": "switch.turn_on",
+                                        "service_data": {
+                                            "entity_id": "switch.nad_sofa"
+                                        },
+                                        "type": "call-service"
+                                    },
+                                    {
+                                        "action_name": "Play/pause",
+                                        "icon": "mdi:cast-connected",
+                                        "name": "Play pause Stue",
+                                        "service": "media_player.media_play_pause",
+                                        "service_data": {
+                                            "entity_id": "media_player.stue"
+                                        },
+                                        "type": "call-service"
+                                    }
+                                ],
+                                "type": "entities"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "switch.nad_power",
+                                    "state": "on"
+                                }
+                            ],
+                            "title": "NAD",
+                            "type": "conditional"
+                        },
+                        {
+                            "entity": "light.living_room",
+                            "name": "Lys",
+                            "theme": "default",
+                            "type": "light"
+                        },
+                        {
+                            "entity": "media_player.stue",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.googlehome1726",
+                            "type": "media-control"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.stue_temperature"
+                                },
+                                {
+                                    "entity": "sensor.stue_humidity"
+                                },
+                                {
+                                    "entity": "sensor.stue_co2"
+                                },
+                                {
+                                    "entity": "sensor.stue_tvoc"
+                                },
+                                {
+                                    "entity": "sensor.stue_pressure"
+                                },
+                                {
+                                    "entity": "sensor.stue_battery"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Thingy52 Stue",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.hue"
+                                }
+                            ],
+                            "type": "entities"
+                        }
+                    ],
+                    "title": "Stue"
+                },
+                {
+                    "badges": [
+                        "sensor.soverom_temperature"
+                    ],
+                    "cards": [
+                        {
+                            "entity": "light.soverom_lys",
+                            "type": "light"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.ac_1"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Leselys",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "media_player.hp",
+                            "type": "media-control"
+                        },
+                        {
+                            "entity": "media_player.googlehome4907",
+                            "type": "media-control"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.soverom_temperature"
+                                },
+                                {
+                                    "entity": "sensor.soverom_humidity"
+                                },
+                                {
+                                    "entity": "sensor.soverom_co2"
+                                },
+                                {
+                                    "entity": "sensor.soverom_tvoc"
+                                },
+                                {
+                                    "entity": "sensor.soverom_pressure"
+                                },
+                                {
+                                    "entity": "sensor.soverom_battery"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Thingy52 Soverom",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.ac_5"
+                                },
+                                {
+                                    "entity": "switch.ac_6"
+                                },
+                                {
+                                    "entity": "switch.ac_7"
+                                },
+                                {
+                                    "entity": "switch.ac_8"
+                                }
+                            ],
+                            "title": "Outlets Bedroom",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.alarmclock"
+                                }
+                            ],
+                            "type": "entities"
+                        }
+                    ],
+                    "panel": false,
+                    "title": "H\u00e5kon"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.kjeller_temperature"
+                                },
+                                {
+                                    "entity": "sensor.kjeller_humidity"
+                                },
+                                {
+                                    "entity": "sensor.kjeller_co2"
+                                },
+                                {
+                                    "entity": "sensor.kjeller_tvoc"
+                                },
+                                {
+                                    "entity": "sensor.kjeller_pressure"
+                                },
+                                {
+                                    "entity": "sensor.kjeller_battery"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Thingy52 Kjeller",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.loft_temperature"
+                                },
+                                {
+                                    "entity": "sensor.loft_humidity"
+                                },
+                                {
+                                    "entity": "sensor.loft_co2"
+                                },
+                                {
+                                    "entity": "sensor.loft_tvoc"
+                                },
+                                {
+                                    "entity": "sensor.loft_pressure"
+                                },
+                                {
+                                    "entity": "sensor.loft_battery"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Thingy52 Loft",
+                            "type": "entities"
+                        }
+                    ],
+                    "panel": false,
+                    "title": "Lager"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}

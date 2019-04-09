@@ -1,0 +1,1 @@
+../../3p_components/Hue-sensors-HASS/custom_components/huesensor/binary_sensor.py

@@ -1,0 +1,73 @@
+- id: '123456789123'
+  alias: Alarm lys soverom
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm_time.state
+      }}'
+  condition:
+    condition: or
+    conditions:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'on'
+      - condition: time
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: input_boolean.alarmweekday
+      state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.ac_1, switch.ac_2, switch.ac_3
+- id: '1553475806334'
+  alias: Bedroom lights off, hue remote
+  trigger:
+  - entity_id: sensor.bedroom_switch
+    platform: state
+    to: 4_click_up
+  condition: []
+  action:
+  - data:
+      entity_id: light.soverom_lys
+    service: light.turn_off
+- id: '1553475806335'
+  alias: Bedroom lights on, hue remote
+  trigger:
+  - entity_id: sensor.bedroom_switch
+    platform: state
+    to: 1_click_up
+  condition: []
+  action:
+  - data:
+      entity_id: light.soverom_lys
+    service: light.turn_on
+- id: '1553550909900'
+  alias: NAD on, hue button
+  trigger:
+  - entity_id: sensor.living_room_switch
+    platform: state
+    to: 1_click_up
+  condition: []
+  action:
+  - data:
+      payload: POWER_ON
+      topic: /NAD/
+    service: mqtt.publish
+- id: '1553550909901'
+  alias: NAD off, hue button
+  trigger:
+  - entity_id: sensor.living_room_switch
+    platform: state
+    to: 4_click_up
+  condition: []
+  action:
+  - data:
+      payload: POWER_OFF
+      topic: /NAD/
+    service: mqtt.publish

@@ -1,0 +1,15 @@
+- platform: huesensor
+  #ip_address: 192.168.1.18
+  #token: Fk921og8JBVu-wiI0mH29AhQm2JNpi-9OhBPQUTm
+#    #token: m2xXe6vh8ZRE-X3FdaYHYQOS-KvxY693sdIxxxxx <- this was obtained from http:Hue_IP/api/ stuff – the above obtained from HASSIO config file in .storage
+- platform: template
+  sensors:
+
+    living_room_temperature:
+      friendly_name: 'Living room temperature'
+      value_template: '{{state_attr("binary_sensor.living_room_motion_sensor", "temperature")}}'
+      unit_of_measurement: °
+    living_room_light_level:
+      friendly_name: 'Living room light level'
+      value_template: '{{state_attr("binary_sensor.living_room_motion_sensor", "lx")}}'
+      unit_of_measurement: lux

@@ -2,10 +2,10 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 0
-  longitude: 0
+  latitude: 63.43049
+  longitude: 10.39506
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 0
+  elevation: 40
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -43,12 +43,40 @@ conversation:
 
 # Enables support for tracking state changes over time
 history:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - light
+      - media_player
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
 
 # View all events in a logbook
 logbook:
+  include:
+    domains:
+      - sensor
+      - binary_sensor
+      - switch
+      - light
+      - media_player
+  exclude:
+    entities:
+      - sensor.date
+      - sensor.date_time
+      - sensor.time
+      - sensor.time_date
+      - sensor.time_utc
 
 # Enables a map showing the location of tracked devices
-map:
+#map:
 
 # Track the sun
 sun:
@@ -60,6 +88,10 @@ tts:
 
 # Cloud
 cloud:
+
+# System health
+system_health:
+
 
 #group: !include groups.yaml
 automation: !include automations.yaml
@@ -75,10 +107,10 @@ sensor: !include_dir_merge_list sensors
 ### Input Boolean ###
 # The input_boolean component allows the user to define boolean values
 # that can be controlled via the frontend and can be used within conditions of automation.
-input_boolean: !include input_boolean.yaml
+input_boolean: !include custom_components/input_boolean.yaml
 
 ### Input Number ###
-input_number: !include input_number.yaml
+input_number: !include custom_components/input_number.yaml
 
 http:
     #api_password: !secret http_password
@@ -212,7 +244,14 @@ switch:
     name: "NAD SOFA"
     command_topic: "/NAD/"
     payload_on: "INPUT_SOFA"
-               
+
+binary_sensor:
+  - platform: huesensor
+  
+
+#device_tracker:
+#  - platform: huesensor
+
 group:
   default_view:
     name: Overview
@@ -238,6 +277,21 @@ group:
       - switch.ac_7
       - switch.ac_8
   
+  soverom_klima:
+    name: thingy52_soverom
+    entities:
+      - sensor.soverom_temperature
+      - sensor.soverom_humidity
+      - sensor.soverom_co2
+      - sensor.soverom_tvoc
+      - sensor.soverom_pressure
+      - sensor.soverom_battery
+  hue:
+    entities:
+      - binary_sensor.living_room_motion_sensor
+      - sensor.living_room_temperature
+      - sensor.living_room_light_level
+      
   automation_view:
     name: Automation
     view: true
