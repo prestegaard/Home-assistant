@@ -39,55 +39,91 @@ updater:
 discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+#conversation:
+
+# recorder: 
+#   exclude:
+#     enteties:
+#       - sensor.date
+#       - sensor.date_time
+#       - sensor.time
+#       - sensor.time_date
+#       - sensor.time_utc
+
+recorder:
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - binary_sensor
+      - light
 
 # Enables support for tracking state changes over time
 history:
+  use_include_order: true
   include:
-    domains:
-      - sensor
-      - binary_sensor
-      - switch
-      - light
-      - media_player
-  exclude:
     entities:
-      - sensor.date
-      - sensor.date_time
-      - sensor.time
-      - sensor.time_date
-      - sensor.time_utc
+      - light.soverom_lys
+      - light.ac_1
+      - light.ac_2
+      - light.ac_3
+      - light.ac_4
+      - switch.ac_5
+      - switch.ac_6
+      - switch.ac_7
+      - switch.ac_8
+      - sensor.0x00158d00025d859a_temperature
+      - sensor.0x00158d00025ee67a_temperature
+      - sensor.kjeller_temperature
+      - sensor.soverom_temperature
+      - sensor.soverom_aqara_sensor_temperature
+      - sensor.stue_temperature
+      - sensor.living_room_temperature
+      - sensor.loft_temperature
+      - sensor.0x00158d00025d859a_humidity
+      - sensor.0x00158d00025ee67a_humidity
+      - sensor.kjeller_humidity
+      - sensor.soverom_humidity
+      - sensor.soverom_aqara_sensor_humidity
+      - sensor.stue_humidity
+      - sensor.loft_humidity
+      - sensor.living_room_light_level
+      - light.living_room
+    # domain: 
+    #   - binary_sensor
+    #   - media_player
 
 # View all events in a logbook
-logbook:
-  include:
-    domains:
-      - sensor
-      - binary_sensor
-      - switch
-      - light
-      - media_player
-  exclude:
-    entities:
-      - sensor.date
-      - sensor.date_time
-      - sensor.time
-      - sensor.time_date
-      - sensor.time_utc
+# logbook:
+#   include:
+#     domains:
+#       - sensor
+#       - binary_sensor
+#       - switch
+#       - light
+#       - media_player
+#   exclude:
+#     entities:
+#       - sensor.date
+#       - sensor.date_time
+#       - sensor.time
+#       - sensor.time_date
+#       - sensor.time_utc
 
 # Enables a map showing the location of tracked devices
 #map:
 
 # Track the sun
-sun:
+#sun:
 
 
 # Text to speech
-tts:
-  - platform: google
+#tts:
+#  - platform: google
 
 # Cloud
-cloud:
+#cloud:
 
 # System health
 system_health:
@@ -121,7 +157,7 @@ http:
     login_attempts_threshold : 3
 
 
-api:
+#api:
 
 mqtt:
     broker: 127.0.0.1 
@@ -131,6 +167,13 @@ mqtt:
     username: haagon
     password: !secret mqtt_password
     protocol: 3.1 
+    discovery: true
+    birth_message: 
+      topic: 'hass/status'
+      payload: 'online'
+    will_message: 
+      topic: 'hass/status'
+      payload: 'offline'
 
 
 light:

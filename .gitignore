@@ -1,3 +1,4 @@
 secrets.yaml
 *.db
 tts/*
+home-assistant.log

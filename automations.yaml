@@ -71,3 +71,60 @@
       payload: POWER_OFF
       topic: /NAD/
     service: mqtt.publish
+- id: 'aqara_switch_bedroom_left'
+  alias: Bedroom - respond to left button toggle
+  trigger:
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter seng'
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter door'
+  condition:
+    condition: template
+    value_template: '{{ "left" == trigger.payload_json.click }}'
+  action:
+    entity_id: light.soverom_lys
+    service: light.toggle
+- id: 'aqara_switch_bedroom_right'
+  alias: Bedroom - respond to right button dimmer
+  trigger:
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter seng'
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter door'
+  condition:
+    condition: template
+    value_template: '{{ "right" == trigger.payload_json.click }}'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.soverom_lys
+      brightness: >
+        {% if states.light.bedroom.attributes.brightness  < 100 %}
+         250
+        {% elif states.light.bedroom.attributes.brightness  < 160 %}
+         75
+        {% elif states.light.bedroom.attributes.brightness  < 255 %}
+         130
+        {% endif %}
+- id: 'aqara_switch_bedroom_both'
+  alias: Bedroom - respond to both button color
+  trigger:
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter seng'
+    - platform: mqtt
+      topic: 'zigbee2mqtt/Soverom Aqara bryter door'
+  condition:
+    condition: template
+    value_template: '{{ "both" == trigger.payload_json.click }}'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.soverom_lys
+      color_temp: >
+        {% if states.light.bedroom.attributes.color_temp  < 300 %}
+         424
+        {% elif states.light.bedroom.attributes.color_temp  < 400 %}
+         224
+        {% elif states.light.bedroom.attributes.color_temp  < 500 %}
+         324 
+        {% endif %}        

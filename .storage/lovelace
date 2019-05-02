@@ -27,7 +27,19 @@
                                     "entity": "sensor.stue_temperature"
                                 },
                                 {
+                                    "entity": "sensor.living_room_temperature"
+                                },
+                                {
                                     "entity": "sensor.loft_temperature"
+                                },
+                                {
+                                    "entity": "sensor.0x00158d00025ee67a_temperature"
+                                },
+                                {
+                                    "entity": "sensor.0x00158d00025d859a_temperature"
+                                },
+                                {
+                                    "entity": "sensor.soverom_aqara_sensor_temperature"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -47,6 +59,15 @@
                                 },
                                 {
                                     "entity": "sensor.loft_humidity"
+                                },
+                                {
+                                    "entity": "sensor.0x00158d00025ee67a_humidity"
+                                },
+                                {
+                                    "entity": "sensor.0x00158d00025d859a_humidity"
+                                },
+                                {
+                                    "entity": "sensor.soverom_aqara_sensor_humidity"
                                 }
                             ],
                             "show_header_toggle": false,
@@ -226,9 +247,7 @@
                     "title": "Stue"
                 },
                 {
-                    "badges": [
-                        "sensor.soverom_temperature"
-                    ],
+                    "badges": [],
                     "cards": [
                         {
                             "entity": "light.soverom_lys",
